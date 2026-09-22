@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_data.freezed.dart';
@@ -9,5 +10,6 @@ abstract class ProductData with _$ProductData {
     required String name,
     String? description,
     double? price,
+    @Default(Icons.inventory_2) IconData icon,
   }) = _ProductData;
 }
