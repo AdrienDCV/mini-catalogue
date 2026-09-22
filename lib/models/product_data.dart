@@ -11,5 +11,6 @@ abstract class ProductData with _$ProductData {
     String? description,
     double? price,
     @Default(Icons.inventory_2) IconData icon,
+    @Default(false) bool isFavourite,
   }) = _ProductData;
 }
