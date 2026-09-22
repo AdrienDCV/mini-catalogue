@@ -13,16 +13,41 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFFF6F6F3),
       appBar: AppBar(
         backgroundColor: const Color(0xFFF6F6F3),
-        title: const Text('Catalogue'),
+        title: const Text('Mini-Catalogue'),
       ),
       body: SafeArea(
         child: BlocBuilder<AppStore, AppState>(
           builder: (context, state) {
-            final products = state.products;
-            if (products.isEmpty) {
+            final store = context.read<AppStore>();
+
+            if (state.products.isEmpty) {
               return const Center(child: CircularProgressIndicator());
             }
-            return ProductListView(products: products);
+
+            final visibleProducts = store.visibleProducts;
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: FilterChip(
+                    label: Text(
+                      'Afficher les favoris (${store.favouriteCount})',
+                    ),
+                    selected: state.favouritesOnly,
+                    onSelected: (_) => store.toggleFavouritesFilter(),
+                  ),
+                ),
+                Expanded(
+                  child: visibleProducts.isEmpty
+                      ? const Center(
+                          child: Text('Aucun favori pour le moment.'),
+                        )
+                      : ProductListView(products: visibleProducts),
+                ),
+              ],
+            );
           },
         ),
       ),

@@ -5,5 +5,8 @@ part 'app_state.freezed.dart';
 
 @freezed
 abstract class AppState with _$AppState {
-  const factory AppState({@Default([]) List<ProductData> products}) = _AppState;
+  const factory AppState({
+    @Default([]) List<ProductData> products,
+    @Default(false) bool favouritesOnly,
+  }) = _AppState;
 }

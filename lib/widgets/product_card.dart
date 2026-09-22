@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/models/product_data.dart';
+import 'package:mobile/widgets/favourite_button.dart';
 
 String formatPrice(double? price) {
   if (price == null) return '—';
@@ -72,6 +73,8 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 4),
+          FavouriteButton(product: product),
         ],
       ),
     );
