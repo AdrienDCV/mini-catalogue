@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/models/product_data.dart';
+import 'package:mobile/stores/app_store.dart';
 import 'package:mobile/widgets/favourite_button.dart';
 
 String formatPrice(double? price) {
@@ -16,6 +18,11 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
+    final showDescription = context.select<AppStore, bool>(
+      (store) => store.state.showDescriptions,
+    );
+    final description = product.description;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -55,21 +62,22 @@ class ProductCard extends StatelessWidget {
                     Text(
                       formatPrice(product.price),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  product.description ?? '',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey.shade600,
-                      ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                if (showDescription && description != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.bodyMedium
+                        ?.copyWith(color: Colors.grey.shade600),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ],
             ),
           ),

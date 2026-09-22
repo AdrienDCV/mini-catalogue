@@ -8,5 +8,6 @@ abstract class AppState with _$AppState {
   const factory AppState({
     @Default([]) List<ProductData> products,
     @Default(false) bool favouritesOnly,
+    @Default(true) bool showDescriptions,
   }) = _AppState;
 }

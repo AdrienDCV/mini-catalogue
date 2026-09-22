@@ -22,9 +22,12 @@ class AppStore extends Cubit<AppState> {
     emit(state.copyWith(products: buildSampleProducts()));
   }
 
-  /// Affiche tout le catalogue, ou seulement les favoris.
   void toggleFavouritesFilter() {
     emit(state.copyWith(favouritesOnly: !state.favouritesOnly));
+  }
+
+  void toggleDescriptions() {
+    emit(state.copyWith(showDescriptions: !state.showDescriptions));
   }
 
   void toggleFavourite(String productId) {
