@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/data/sample_products.dart';
 
 import 'app_state.dart';
 
@@ -10,6 +11,6 @@ class AppStore extends Cubit<AppState> {
   }
 
   Future<void> loadProductList() async {
-    // load products...
+    emit(AppState(products: buildSampleProducts()));
   }
 }

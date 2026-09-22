@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductData {
 
- String get id; String get name; String? get description; double? get price;
+ String get id; String get name; String? get description; double? get price; IconData get icon;
 /// Create a copy of ProductData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $ProductDataCopyWith<ProductData> get copyWith => _$ProductDataCopyWithImpl<Prod
 @override
 bool operator ==(Object other) {
   final _this = this as ProductData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductData&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.price, _this.price) || other.price == _this.price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductData&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.price, _this.price) || other.price == _this.price)&&(identical(other.icon, _this.icon) || other.icon == _this.icon));
 }
 
 
 @override
 int get hashCode {
   final _this = this as ProductData;
-  return Object.hash(runtimeType,_this.id,_this.name,_this.description,_this.price);
+  return Object.hash(runtimeType,_this.id,_this.name,_this.description,_this.price,_this.icon);
 }
 
 @override
 String toString() {
   final _this = this as ProductData;
-  return 'ProductData(id: ${_this.id}, name: ${_this.name}, description: ${_this.description}, price: ${_this.price})';
+  return 'ProductData(id: ${_this.id}, name: ${_this.name}, description: ${_this.description}, price: ${_this.price}, icon: ${_this.icon})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $ProductDataCopyWith<$Res>  {
   factory $ProductDataCopyWith(ProductData value, $Res Function(ProductData) _then) = _$ProductDataCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? description, double? price
+ String id, String name, String? description, double? price, IconData icon
 });
 
 
@@ -68,13 +68,14 @@ class _$ProductDataCopyWithImpl<$Res>
 
 /// Create a copy of ProductData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? price = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? price = freezed,Object? icon = null,}) {
   return _then(ProductData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as IconData,
   ));
 }
 
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  double? price)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  double? price,  IconData icon)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductData() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.price);case _:
+return $default(_that.id,_that.name,_that.description,_that.price,_that.icon);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.id,_that.name,_that.description,_that.price);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  double? price)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  double? price,  IconData icon)  $default,) {final _that = this;
 switch (_that) {
 case _ProductData():
-return $default(_that.id,_that.name,_that.description,_that.price);case _:
+return $default(_that.id,_that.name,_that.description,_that.price,_that.icon);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +201,10 @@ return $default(_that.id,_that.name,_that.description,_that.price);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? description,  double? price)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? description,  double? price,  IconData icon)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductData() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.price);case _:
+return $default(_that.id,_that.name,_that.description,_that.price,_that.icon);case _:
   return null;
 
 }
@@ -215,13 +216,14 @@ return $default(_that.id,_that.name,_that.description,_that.price);case _:
 
 
 class _ProductData implements ProductData {
-  const _ProductData({required this.id, required this.name, this.description, this.price});
+  const _ProductData({required this.id, required this.name, this.description, this.price, this.icon = Icons.inventory_2});
   
 
 @override final  String id;
 @override final  String name;
 @override final  String? description;
 @override final  double? price;
+@override@JsonKey() final  IconData icon;
 
 /// Create a copy of ProductData
 /// with the given fields replaced by the non-null parameter values.
@@ -233,18 +235,18 @@ _$ProductDataCopyWith<_ProductData> get copyWith => __$ProductDataCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.icon, icon) || other.icon == icon));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,name,description,price);
+    return Object.hash(runtimeType,id,name,description,price,icon);
 }
 
 @override
 String toString() {
-    return 'ProductData(id: $id, name: $name, description: $description, price: $price)';
+    return 'ProductData(id: $id, name: $name, description: $description, price: $price, icon: $icon)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$ProductDataCopyWith<$Res> implements $ProductDataCopyWith
   factory _$ProductDataCopyWith(_ProductData value, $Res Function(_ProductData) _then) = __$ProductDataCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? description, double? price
+ String id, String name, String? description, double? price, IconData icon
 });
 
 
@@ -272,13 +274,14 @@ class __$ProductDataCopyWithImpl<$Res>
 
 /// Create a copy of ProductData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? price = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? price = freezed,Object? icon = null,}) {
   return _then(_ProductData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as IconData,
   ));
 }
 
