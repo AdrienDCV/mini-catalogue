@@ -31,12 +31,34 @@ class HomePage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                  child: FilterChip(
-                    label: Text(
-                      'Afficher les favoris (${store.favouriteCount})',
-                    ),
-                    selected: state.favouritesOnly,
-                    onSelected: (_) => store.toggleFavouritesFilter(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FilterChip(
+                        label: Text('Favoris (${store.favouriteCount})'),
+                        selected: state.favouritesOnly,
+                        onSelected: (_) => store.toggleFavouritesFilter(),
+                      ),
+                      TextButton.icon(
+                        onPressed: store.toggleDescriptions,
+                        icon: Icon(
+                          state.showDescriptions
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          size: 18,
+                        ),
+                        label: Text(
+                          state.showDescriptions
+                              ? 'Masquer les descriptions'
+                              : 'Afficher les descriptions',
+                        ),
+                        style: TextButton.styleFrom(
+                          visualDensity: VisualDensity.compact,
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          textStyle: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
