@@ -1,0 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'product_data.freezed.dart';
+
+@freezed
+abstract class ProductData with _$ProductData {
+  const factory ProductData({
+    required String id,
+    required String name,
+    String? description,
+    double? price,
+  }) = _ProductData;
+}
